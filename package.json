@@ -6,6 +6,8 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "amqplib": "^0.10.8",
+    "axios": "^1.9.0",
     "bcrypt": "^6.0.0",
     "compression": "^1.8.0",
     "cookie-parser": "~1.4.4",
@@ -17,6 +19,7 @@
     "jade": "~1.11.0",
     "mongoose": "^8.15.1",
     "morgan": "~1.9.1",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "redis": "^5.5.6"
   }
 }
