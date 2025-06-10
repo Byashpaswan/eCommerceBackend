@@ -34,7 +34,8 @@ exports.getRedisData=function(key){
     return new Promise((resolve, reject) => {
         client.get(key, (err, data) => {
             if (err) {
-                reject({error:true,
+                reject({
+                    error:true,
                     message:'error while fetching data from redis',
                     data: err.message
                 });
