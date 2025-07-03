@@ -16,7 +16,7 @@ exports.tokenAuthentication=async(req,res,next)=>{
                     response.msg="unauthorized Access";
                     return res.status(403).json(response);
                 }
-
+                req.user=result; // store user data in request object
                   next(); 
 
             })

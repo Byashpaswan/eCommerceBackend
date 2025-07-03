@@ -1,11 +1,12 @@
 const express=require('express');
 const route=express.Router();
-const apiController=require('../../controller/api/api.controller')
+const chatcontroller=require('../../controller/chat/chatcontroller')
 const authentication=require('../../helper/auth')
 
 
 // route.use(authentication.tokenAuthentication);
-route.get('/product',apiController.getAllPrioducts);
+route.get('/:userId',chatcontroller.getUerChat);
+route.get('/topmost',chatcontroller.getTopMost);
 
 
 

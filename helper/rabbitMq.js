@@ -83,15 +83,28 @@ exports.createChannel=async()=>{
 
 
 
-exports.publish=async(queue, message)=>{
-  try {
-    if (!pubChannel) {
-      throw new Error("Publisher channel is not initialized");
-    }
-    await pubChannel.assertQueue(queue, { durable: true });
-    pubChannel.sendToQueue(queue, Buffer.from(JSON.stringify(message)), { persistent: true });
-    console.log(`Message sent to queue ${queue}:`, message);
-  } catch (error) {
-    console.error("Error publishing message:", error);
-  } 
+exports.publish=async(queue, content,persistValue,durableValue)=>{
+    return new Promise((resolve,reject)=>{
+        if(!pubChannel){
+            reject(new Error("RabbitMQ channel is not created"));
+        }
+        pubChannel.assertQueue(queue, {
+            durable: durableValue || true,
+            persistent: persistValue || true
+        }).then(() => {
+            pubChannel.sendToQueue(queue, Buffer.from(JSON.stringify(content)), {
+                persistent: persistValue || true
+            });
+            console.log(`Message sent to queue ${queue}`);
+            resolve(true);
+        }).catch(err => {
+            pubChannel.connection.close();
+            pubChannel = null;
+            connection = null
+            console.log("====================error",err);
+            console.error("Error publishing message to RabbitMQ:", err);
+            reject(err);
+        });
+    });
+  
 }

@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@socket.io/redis-adapter": "^8.3.0",
     "amqplib": "^0.10.8",
     "axios": "^1.9.0",
     "bcrypt": "^6.0.0",
@@ -20,7 +21,9 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.1",
     "morgan": "~1.9.1",
+    "multer": "^2.0.1",
     "nodemon": "^3.1.10",
-    "redis": "^5.5.6"
+    "redis": "^5.5.6",
+    "socket.io": "^4.8.1"
   }
 }
